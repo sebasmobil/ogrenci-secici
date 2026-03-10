@@ -172,6 +172,15 @@ body{padding:20px 14px 60px}
         <div class="mdesc">Her ogrenci bir kez secilir</div>
       </div>
     </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between">
+      <span style="font-family:Courier New,monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--t2)">ANIMASYON</span>
+      <div id="animToggle" style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <span id="animLabel" style="font-family:Courier New,monospace;font-size:12px;font-weight:700;color:var(--ok)">Acik</span>
+        <div id="animTrack" style="width:44px;height:24px;border-radius:12px;background:var(--ok);position:relative;transition:background .2s">
+          <div id="animThumb" style="position:absolute;top:3px;left:22px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="prog-row" id="progRow">
@@ -245,6 +254,7 @@ var mode = 'unique';
 var usedMap = {};
 var hist = [];
 var picking = false;
+var animOn = true;
 var _rows = [];
 var _warnTimer = null;
 
@@ -529,6 +539,7 @@ function pick() {
 }
 
 function runAnim(chosen, pool) {
+  if (!animOn) { finish(chosen); return; }
   var el = document.getElementById('rName');
   var names = [];
   for (var i = 0; i < pool.length; i++) names.push(pool[i].ad);
@@ -757,6 +768,14 @@ function notify(msg) {
 // --- INIT ---
 document.getElementById('dotAcik').addEventListener('click', function() { applyTheme('acik'); });
 document.getElementById('dotGece').addEventListener('click', function() { applyTheme('gece'); });
+document.getElementById('animToggle').addEventListener('click', function() {
+  animOn = !animOn;
+  document.getElementById('animLabel').textContent = animOn ? 'Acik' : 'Kapali';
+  document.getElementById('animLabel').style.color = animOn ? 'var(--ok)' : 'var(--t3)';
+  document.getElementById('animTrack').style.background = animOn ? 'var(--ok)' : 'var(--bd)';
+  document.getElementById('animThumb').style.left = animOn ? '22px' : '3px';
+  try { localStorage.setItem('ogr_anim', animOn ? '1' : '0'); } catch(e) {}
+});
 document.getElementById('btnDosya').addEventListener('click', function() { document.getElementById('fileInput').click(); });
 document.getElementById('btnIptal').addEventListener('click', closeModal);
 document.getElementById('btnYukle').addEventListener('click', confirmMapping);
@@ -806,6 +825,16 @@ document.addEventListener('keydown', function(e) {
 try {
   var t = localStorage.getItem('ogr_theme');
   if (t) applyTheme(t);
+} catch(e) {}
+try {
+  var a = localStorage.getItem('ogr_anim');
+  if (a === '0') {
+    animOn = false;
+    document.getElementById('animLabel').textContent = 'Kapali';
+    document.getElementById('animLabel').style.color = 'var(--t3)';
+    document.getElementById('animTrack').style.background = 'var(--bd)';
+    document.getElementById('animThumb').style.left = '3px';
+  }
 } catch(e) {}
 
 if (loadSaved()) {
