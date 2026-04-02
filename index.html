@@ -42,7 +42,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="license" content="GNU Affero General Public License v3.0 - https://www.gnu.org/licenses/agpl-3.0.html"/>
 <meta name="copyright" content="Copyright (C) 2026 sebasmobil"/>
-<title>S-Seçim v4.0</title>
+<title>S-Seçim Pro 1.2</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -565,7 +565,7 @@ body{padding:0 0 72px}
   <!-- BAŞLIK -->
   <div class="header">
     <div class="hdr-left">
-      <div class="hdr-h1">S-Seçim <span class="ver">Pro 1.0</span></div>
+      <div class="hdr-h1">S-Seçim <span class="ver">Pro 1.2</span></div>
     </div>
     <div class="hdr-right">
       <div class="ticon" id="temaBtn" title="Tema değiştir">☀️</div>
@@ -641,14 +641,20 @@ body{padding:0 0 72px}
     </div>
   </div>
 
-  <!-- ÖĞRENCİ ARAMA (puan düzenle/sil) -->
-  <div class="ogr-ara-card">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t2);margin-bottom:8px;display:flex;align-items:center;gap:6px">
-      <span>🔍</span> Öğrenci Ara
+  <!-- HIZLI PUAN VER * (folder) -->
+  <div class="folder-card">
+    <div class="folder-head" id="folderHizliHead">
+      <div class="folder-title"><span class="folder-icon-wrap">⚡</span> Hızlı Puan Ver</div>
+      <span class="folder-arrow" id="folderHizliArrow">▼</span>
     </div>
-    <input class="ogr-ara-inp" id="ogrAraInp" placeholder="Ad, numara veya sınıf..." autocomplete="off">
-    <div class="ogr-ara-list" id="ogrAraList"></div>
+    <div class="folder-body" id="folderHizliBody">
+      <div style="margin-top:10px">
+        <input class="hizli-puan-inp" id="hizliPuanInp" placeholder="Öğrenci adı, no veya sınıf ara...">
+        <div class="hizli-puan-list" id="hizliPuanList"></div>
+      </div>
+    </div>
   </div>
+
 
   <!-- SONUÇ -->
   <div class="rcard" id="rCard">
@@ -701,20 +707,6 @@ body{padding:0 0 72px}
   </div>
 
   <button class="btn-pick" id="btnSec">✦ Öğrenci Seç</button>
-
-  <!-- HIZLI PUAN VER * (folder) -->
-  <div class="folder-card">
-    <div class="folder-head" id="folderHizliHead">
-      <div class="folder-title"><span class="folder-icon-wrap">⚡</span> Hızlı Puan Ver</div>
-      <span class="folder-arrow" id="folderHizliArrow">▼</span>
-    </div>
-    <div class="folder-body" id="folderHizliBody">
-      <div style="margin-top:10px">
-        <input class="hizli-puan-inp" id="hizliPuanInp" placeholder="Öğrenci adı, no veya sınıf ara...">
-        <div class="hizli-puan-list" id="hizliPuanList"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- GERİ SAYIM * (folder) -->
   <div class="folder-card">
@@ -894,7 +886,7 @@ body{padding:0 0 72px}
     <div style="padding:4px 20px 12px;border-bottom:1.5px solid var(--bd);display:flex;align-items:center;justify-content:space-between">
       <div>
         <div style="font-size:18px;font-weight:900;color:var(--t1);letter-spacing:-.3px">🎉 Yenilikler</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:2px">S-Seçim <span style="background:var(--ac);color:#fff;padding:1px 6px;border-radius:4px;font-size:9px">Pro 1.0</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:2px">S-Seçim <span style="background:var(--ac);color:#fff;padding:1px 6px;border-radius:4px;font-size:9px">Pro 1.2</span></div>
       </div>
     </div>
     <!-- Liste -->
@@ -941,7 +933,7 @@ body{padding:0 0 72px}
       </div>
     </div>
     <div class="nav-footer-row">
-      S-Seçim <span class="footer-ver">Pro 1.0</span> &nbsp;©sebasmobil&nbsp;
+      S-Seçim <span class="footer-ver">Pro 1.2</span> &nbsp;©sebasmobil&nbsp;
       <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPL V3.0</a>
       &nbsp;2026
     </div>
@@ -2135,18 +2127,18 @@ yedekListesiGoster();
 
 
 /* ===================== YENİLİKLER MODALI ===================== */
-var YENILIK_VER = 'Pro1.0';
+var YENILIK_VER = 'Pro1.2';
 var YENILIKLER = [
-  { emoji:'🎨', baslik:'Tamamen yenilenen tasarım', aciklama:'Nunito & JetBrains Mono fontları, modern kart düzeni, gece/gündüz tema.' },
-  { emoji:'📱', baslik:'Alt navigasyon çubuğu', aciklama:'Anasayfa, Geçmiş ve Veri Yönetimi artık alt menüden erişilebilir.' },
-  { emoji:'📁', baslik:'Klasör sistemi', aciklama:'Seçim Modu, Animasyon, Sınıflar, Hızlı Puan ve Geri Sayım artık açılıp kapanabilen klasörler. Son durum hatırlanır.' },
-  { emoji:'🕐', baslik:'Geçmiş ayrı sekmede', aciklama:'Seçim geçmişi, çıkmayanlar ve puan özeti artık Geçmiş sekmesinde.' },
-  { emoji:'🗄️', baslik:'Veri Yönetimi sekmesi', aciklama:'Öğrenci yükleme, ekleme, silme ve yedekleme işlemleri tek sekmede.' },
-  { emoji:'🚫', baslik:'GitHub yüklemesi kaldırıldı', aciklama:'Veri yükleme artık yalnızca yerel CSV dosyasından yapılabilir.' },
-  { emoji:'📣', baslik:'İletişim kısayolları', aciklama:'Alt çubuktan Instagram @sebasmobil ve e-posta sebasmobil@proton.me adresine doğrudan ulaşabilirsiniz.' },
-  { emoji:'⚡', baslik:'Performans iyileştirmeleri', aciklama:'Sayfa geçişleri, animasyonlar ve toast bildirimleri optimize edildi.' },
-  { emoji:'🔖', baslik:'Lisans bilgisi altta', aciklama:'S-Seçim Pro 1.0 · ©sebasmobil · AGPL V3.0 2026 alt çubukta görünür.' },
-  { emoji:'🌟', baslik:'Pro sürüme geçiş', aciklama:'Uygulama S-Seçim Pro 1.0 olarak yeniden adlandırıldı.' },
+  { emoji:'⚡', baslik:'Hızlı Puan Ver taşındı', aciklama:'Hızlı Puan Ver kartı artık Sınıflar klasörünün hemen altında, çok daha kolay erişilebilir.' },
+  { emoji:'🔍', baslik:'Öğrenci arama kaldırıldı', aciklama:'Anasayfadaki ayrı Öğrenci Ara bölümü kaldırıldı, Hızlı Puan üzerinden tüm işlemler yapılabilir.' },
+  { emoji:'📊', baslik:'Puan kartı kompakt hale getirildi', aciklama:'Seçilen öğrencinin puan detayı artık tek satırda — sayılar ve butonlar yan yana görünür.' },
+  { emoji:'🎯', baslik:'Scroll sorunu giderildi', aciklama:'Öğrenci Seç butonuna basıldığında sayfa artık yukarı kaymıyor, buton her zaman görünür kalıyor.' },
+  { emoji:'📋', baslik:'Veri Yönetimi sadeleştirildi', aciklama:'Veri Yönetimi sekmesinde klasör yapısı kaldırıldı, tüm içerik doğrudan görünür.' },
+  { emoji:'🏷️', baslik:'Lisans bilgisi alt çubukta', aciklama:'S-Seçim Pro 1.2 · ©sebasmobil · AGPL V3.0 lisans bilgisi alt navigasyon çubuğunda yer alıyor.' },
+  { emoji:'📁', baslik:'Dosya adı versiyonlandı', aciklama:'İndirilen HTML dosyası artık sürüm numarasını içeriyor: S-Secim-Pro-1.2.html' },
+  { emoji:'🌙', baslik:'Tek tuş tema geçişi', aciklama:'Üst bardaki tek simgeye tıklayarak gece ve gündüz teması arasında geçiş yapılabilir.' },
+  { emoji:'📱', baslik:'Dar ve sade üst bar', aciklama:'Üst barda yalnızca uygulama adı ve tema simgesi yer alıyor, daha fazla içerik alanı.' },
+  { emoji:'🔔', baslik:'Açılış yenilikleri ekranı', aciklama:'Her yeni sürümde yenilikler listesi açılışta gösterilir. Bir daha gösterme seçeneği mevcuttur.' },
 ];
 
 function yenilikIcerikOlustur(){
