@@ -981,6 +981,7 @@ var depo = (function(){
 })();
 
 var ogr=[], seciliSinif=null, mod='unique', kullanilan={}, gecmis=[], seciliyor=false, animAcik=true, animTip='karistir';
+var _secBtnRect=null, _secScrollBefore=0;
 var modalSatirlar=[], uyariTimer=null;
 // puanlar: {ogrIdx: {plus: N, minus: N}}
 var puanlar = {};
@@ -1514,6 +1515,10 @@ function yedekListesiGoster(){
 function sec(){
   if(!seciliSinif){uyari('Önce bir sınıf seçin');return;}
   if(seciliyor) return;
+  // Butonun mevcut scroll pozisyonunu kaydet
+  var btnEl=document.getElementById('btnSec');
+  _secBtnRect=btnEl?btnEl.getBoundingClientRect():null;
+  _secScrollBefore=window.pageYOffset||document.documentElement.scrollTop;
   var havuz=sinifOgr();
   if(mod==='unique'){
     if(!kullanilan[seciliSinif]) kullanilan[seciliSinif]=new Set();
@@ -1596,6 +1601,17 @@ function bitir(s){
   toggleRow.classList.toggle('open', puanAcik);
   arrow.classList.toggle('open', puanAcik);
   kalanlariGoster();
+  // Butonu görünürde tut - scroll pozisyonunu koru
+  if(_secBtnRect!==null){
+    var btnEl2=document.getElementById('btnSec');
+    if(btnEl2){
+      var newBtnTop=btnEl2.getBoundingClientRect().top;
+      var scrollDiff=newBtnTop-_secBtnRect.top;
+      if(Math.abs(scrollDiff)>2){
+        window.scrollTo({top:_secScrollBefore+scrollDiff, behavior:'instant'});
+      }
+    }
+  }
 }
 
 function sonucGoster(s){
