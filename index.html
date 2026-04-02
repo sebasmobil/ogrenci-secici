@@ -254,27 +254,25 @@ body{padding:0 0 72px}
 .r-puan-tog-m{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--minus);background:var(--minusbg);padding:2px 8px;border-radius:6px}
 .r-puan-toggle-arrow{font-size:10px;color:var(--t3);transition:transform .2s;display:inline-block;flex-shrink:0}
 .r-puan-toggle-arrow.open{transform:rotate(180deg)}
-.r-puan-body{background:var(--bg);border:1.5px solid var(--ac);border-top:none;border-bottom-left-radius:var(--r-sm);border-bottom-right-radius:var(--r-sm);padding:14px 10px;display:none}
+.r-puan-body{background:var(--bg);border:1.5px solid var(--ac);border-top:none;border-bottom-left-radius:var(--r-sm);border-bottom-right-radius:var(--r-sm);padding:10px 12px;display:none}
 .r-puan-body.open{display:block}
-@media(min-width:480px){.r-puan-body{padding:16px}}
-.r-puan-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:nowrap}
-@media(min-width:360px){.r-puan-row{gap:14px}}
-.r-puan-item{display:flex;flex-direction:column;align-items:center;gap:3px}
-.r-puan-val{font-size:clamp(22px,6vw,32px);font-weight:900;line-height:1}
-.r-puan-lbl{font-family:'JetBrains Mono',monospace;font-size:clamp(16px,4vw,22px);font-weight:700;line-height:1}
+.r-puan-row{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap}
+.r-puan-item{display:flex;flex-direction:row;align-items:center;gap:5px;padding:0 10px}
+.r-puan-val{font-size:20px;font-weight:900;line-height:1}
+.r-puan-lbl{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:800;line-height:1}
 .r-puan-plus .r-puan-val{color:var(--plus)}
 .r-puan-plus .r-puan-lbl{color:var(--plus)}
 .r-puan-minus .r-puan-val{color:var(--minus)}
 .r-puan-minus .r-puan-lbl{color:var(--minus)}
-.r-puan-fark .r-puan-val{font-size:clamp(22px,6vw,32px);font-weight:900}
-.r-puan-fark .r-puan-lbl{color:var(--t2);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.r-puan-sep{width:1px;height:44px;background:var(--bd);flex-shrink:0}
-.r-puan-btns{display:flex;gap:10px;margin-top:12px;justify-content:center}
-.r-puan-btn{font-size:clamp(18px,5vw,22px);font-weight:900;width:clamp(48px,13vw,58px);height:clamp(48px,13vw,58px);border-radius:50%;border:2px solid;cursor:pointer;background:none;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.r-puan-fark .r-puan-val{font-size:20px;font-weight:900}
+.r-puan-fark .r-puan-lbl{color:var(--t2);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.r-puan-sep{width:1px;height:28px;background:var(--bd);flex-shrink:0}
+.r-puan-btns{display:flex;gap:8px;margin-top:0;margin-left:auto;flex-shrink:0}
+.r-puan-btn{font-size:18px;font-weight:900;width:38px;height:38px;border-radius:50%;border:2px solid;cursor:pointer;background:none;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .r-puan-btn-plus{border-color:var(--plus);color:var(--plus)}
-.r-puan-btn-plus:hover{background:var(--plusbg);transform:scale(1.08)}
+.r-puan-btn-plus:active{background:var(--plusbg)}
 .r-puan-btn-minus{border-color:var(--minus);color:var(--minus)}
-.r-puan-btn-minus:hover{background:var(--minusbg);transform:scale(1.08)}
+.r-puan-btn-minus:active{background:var(--minusbg)}
 
 /* ── SINIF PİLLERI ── */
 .pills{display:flex;flex-wrap:wrap;gap:6px}
@@ -675,25 +673,27 @@ body{padding:0 0 72px}
           </div>
         </div>
         <div class="r-puan-body" id="rPuanBody">
-          <div class="r-puan-row">
-            <div class="r-puan-item r-puan-plus">
-              <div class="r-puan-val" id="rPuanPlus">0</div>
-              <div class="r-puan-lbl">+</div>
+          <div style="display:flex;align-items:center;gap:0">
+            <div class="r-puan-row" style="flex:1">
+              <div class="r-puan-item r-puan-plus">
+                <div class="r-puan-val" id="rPuanPlus">0</div>
+                <div class="r-puan-lbl">+</div>
+              </div>
+              <div class="r-puan-sep"></div>
+              <div class="r-puan-item r-puan-minus">
+                <div class="r-puan-val" id="rPuanMinus">0</div>
+                <div class="r-puan-lbl">−</div>
+              </div>
+              <div class="r-puan-sep"></div>
+              <div class="r-puan-item r-puan-fark">
+                <div class="r-puan-val" id="rPuanFark">0</div>
+                <div class="r-puan-lbl">Fark</div>
+              </div>
             </div>
-            <div class="r-puan-sep"></div>
-            <div class="r-puan-item r-puan-minus">
-              <div class="r-puan-val" id="rPuanMinus">0</div>
-              <div class="r-puan-lbl">−</div>
+            <div class="r-puan-btns">
+              <button class="r-puan-btn r-puan-btn-plus" id="btnPuanPlus" title="Doğru bildi (+)">+</button>
+              <button class="r-puan-btn r-puan-btn-minus" id="btnPuanMinus" title="Bilmedi (−)">−</button>
             </div>
-            <div class="r-puan-sep"></div>
-            <div class="r-puan-item r-puan-fark">
-              <div class="r-puan-val" id="rPuanFark">0</div>
-              <div class="r-puan-lbl">Fark</div>
-            </div>
-          </div>
-          <div class="r-puan-btns">
-            <button class="r-puan-btn r-puan-btn-plus" id="btnPuanPlus" title="Doğru bildi (+)">+</button>
-            <button class="r-puan-btn r-puan-btn-minus" id="btnPuanMinus" title="Bilmedi (−)">−</button>
           </div>
         </div>
       </div>
